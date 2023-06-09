@@ -1,17 +1,15 @@
 package com.in28minutes.learnspringframework;
 
 import com.in28minutes.learnspringframework.game.GameRunner;
+import com.in28minutes.learnspringframework.game.GamingConsole;
 import com.in28minutes.learnspringframework.game.PacmanGame;
 import com.in28minutes.learnspringframework.game.SuperContraGame;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-public class App02HelloWorldSpringJava {
+public class App03AppGamingSpringBeans {
     public static void main(String[] args) {
-        var context = new AnnotationConfigApplicationContext(HelloWorldConfiguration.class);
-
-        System.out.println(context.getBean("name"));
-        System.out.println(context.getBean("age"));
-        System.out.println(context.getBean("person"));
-        System.out.println(context.getBean("address"));
+        var context = new AnnotationConfigApplicationContext(GamingConfiguration.class);
+        context.getBean(GamingConsole.class).up();
+        context.getBean(GameRunner.class).run();
     }
 }
