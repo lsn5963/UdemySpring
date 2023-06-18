@@ -40,6 +40,7 @@ public class BeanScopesLauncherApplication {
 
         //싱글톤 -> Spring IOC 컨테이너당 객체 인스터스가 딱 한개가 나온다.
 
+        //싱글톤이 default
         // 스프링 싱글톤 vs 자바 싱글톤
         // 스프링 싱글톤의 경우 Spring ioC 컨테이너당 객체 인스턴스가 하나라고 이야기한다.
         // Java 싱글톤에서는 Java 가상 머신 하나당 객체 인스턴스가 하나다. Java 가상 머신 전체에서 객체가 하나이다.
