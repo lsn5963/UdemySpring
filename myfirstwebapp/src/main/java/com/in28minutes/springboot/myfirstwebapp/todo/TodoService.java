@@ -28,4 +28,12 @@ public class TodoService {
                 = todo -> todo.getId() == id;
         todos.removeIf(pridicate);
     }
+
+    public Todo findById(int id) {
+        Predicate<? super Todo> pridicate
+                = todo -> todo.getId() == id;
+        System.out.println("pridicate = " + pridicate);
+        Todo todo = todos.stream().filter(pridicate).findFirst().get();
+        return todo;
+    }
 }
