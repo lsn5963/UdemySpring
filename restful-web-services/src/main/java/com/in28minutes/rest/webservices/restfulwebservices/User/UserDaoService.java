@@ -38,4 +38,10 @@ public class UserDaoService {
         return users.stream().filter(x-> x.getId() == id).findFirst().orElse(null);
     }
 
+    public void deleteById(int id) {
+//        Predicate<? super User> predicate = user -> user.getId().equals(id);
+
+//        users.stream().filter(x-> x.getId() == id).findFirst().orElse(null);
+        users.removeIf(x-> x.getId() == id);
+    }
 }
