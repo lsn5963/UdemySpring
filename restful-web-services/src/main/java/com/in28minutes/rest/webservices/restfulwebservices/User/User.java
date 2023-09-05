@@ -1,5 +1,8 @@
 package com.in28minutes.rest.webservices.restfulwebservices.User;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -13,7 +16,12 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @ToString
+
+@Entity(name = "user_details")
 public class User {
+
+    @Id
+    @GeneratedValue
     private Integer  id;
     @Size(min = 2)
     private String name;
