@@ -28,6 +28,7 @@ public class TodoResource {
     @PostMapping("/users/{username}/todos")
     public void createTodoForSpecificUser(@PathVariable String username
             , @RequestBody Todo todo) {
+        System.out.println("username = " + username);
         logger.info("Create {} for {}", todo, username);
     }
     record Todo (String username, String description) {}
