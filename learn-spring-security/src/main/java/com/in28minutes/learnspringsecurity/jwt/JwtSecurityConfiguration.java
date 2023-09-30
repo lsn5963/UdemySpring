@@ -1,4 +1,4 @@
-package com.in28minutes.learnspringsecurity.basic;
+package com.in28minutes.learnspringsecurity.jwt;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,11 +7,10 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -19,8 +18,8 @@ import javax.sql.DataSource;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
-//@Configuration
-public class BasicAuthSecurityConfiguration {
+@Configuration
+public class JwtSecurityConfiguration {
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception{
         http.authorizeHttpRequests( // 모든 요청 인증한다.
@@ -41,21 +40,10 @@ public class BasicAuthSecurityConfiguration {
         http.headers(headers -> headers.frameOptions(frameOptionsConfig-> frameOptionsConfig.disable()));
 
         http.csrf(csrf -> csrf.disable());// csrf 해제
+        http.oauth2ResourceServer((oauth2) -> oauth2.jwt(withDefaults()));
 
         return http.build();
     }
-//    @Bean
-//    public UserDetailsService userDetailsService(){
-//        var user = User.withUsername("1111")
-//                .password("{noop}1111")
-//                .roles("USER")
-//                .build();
-//        var admin = User.withUsername("admin")
-//                .password("{noop}dummy")
-//                .roles("ADMIN")
-//                .build();
-//        return new InMemoryUserDetailsManager(user, admin);
-//    }
 
     @Bean
     public DataSource dataSource(){
@@ -90,4 +78,9 @@ public class BasicAuthSecurityConfiguration {
     public BCryptPasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
+
+//    @Bean
+//    public JwtDecoder jwtDecoder() {
+//        return
+//    }
 }
