@@ -19,13 +19,16 @@ import javax.sql.DataSource;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
-//@Configuration
+@Configuration
 public class BasicAuthSecurityConfiguration {
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception{
         http.authorizeHttpRequests( // 모든 요청 인증한다.
                 auth -> {
-                    auth.anyRequest().authenticated();
+                    auth
+                            .requestMatchers("/users").hasRole("USER")
+                            .requestMatchers("/admin/**").hasRole("ADMIN")
+                            .anyRequest().authenticated();
                 });
 
         http.sessionManagement( // 세션 생성하지도 않고 사용도 안한다.

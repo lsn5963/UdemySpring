@@ -146,7 +146,7 @@ import com.nimbusds.jose.proc.SecurityContext;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 
-@Configuration
+//@Configuration
 public class JwtSecurityConfiguration {
 
     @Bean
