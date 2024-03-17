@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 public class LoggingAspect {
     private Logger logger = LoggerFactory.getLogger(getClass());
     //Pointcut - When?
-    @Before("execution(* com.in28minutes.learnspringaop.aopexample.*.*.*(..))")
+    @Before("com.in28minutes.learnspringaop.aopexample.aspects.CommonPointcutConfig.dataPackageConfigUsingBean()")
     public void logMethodCallBeforeExecution(JoinPoint joinPoint){
         // Logic - What
         logger.info("Before Aspect Method is called - {}", joinPoint);
